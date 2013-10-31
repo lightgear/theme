@@ -2,7 +2,7 @@
 
 return array(
     
-    'themes_dir' => 'themes',
+    'themes_dir' => '/themes',
 
     'active' => 'sarine',
 );
