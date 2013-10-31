@@ -1,6 +1,6 @@
 {
     "name": "lightgear/theme",
-    "description": "",
+    "description": "Easy theme Management for Laravel 4",
     "authors": [
         {
             "name": "Donato Rotunno",
@@ -9,12 +9,12 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "4.0.x"
+        "illuminate/support": "4.0.x",
+        "lightgear/asset": "dev-master"
     },
     "autoload": {
         "psr-0": {
             "Lightgear\\Theme": "src/"
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
