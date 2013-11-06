@@ -8,12 +8,15 @@ class Theme {
 
     protected $finder;
 
+    protected $asset;
+
     protected $active;
 
     public function __construct($app)
     {
         $this->config = $app['config'];
         $this->finder = $app['view.finder'];
+        $this->asset = $app['asset'];
     }
 
     /**
@@ -25,6 +28,9 @@ class Theme {
     {
         $this->setActive($this->config->get('theme::active'));
         $this->overrideViews();
+        $this->addAssetsPath();
+        $this->loadInfo();
+        $this->registerAssets();
     }
 
     /**
@@ -44,9 +50,40 @@ class Theme {
      */
     public function activeThemePath()
     {
-        return base_path() . '/' . 
+        return base_path() .
                $this->config->get('theme::themes_dir') . '/' .
                $this->active;
+    }
+
+    /**
+     * Register theme assets
+     *
+     * @return void
+     */
+    public function registerAssets()
+    {
+        // styles
+        if (isset($this->info['styles'])) {
+            $this->asset->registerStyles(
+                $this->info['styles']['paths'],
+                $this->info['styles']['package'],
+                isset($this->info['styles']['group']) ? $this->info['styles']['group'] : ''
+            );
+        }
+
+        // scripts
+        if (isset($this->info['scripts'])) {
+            $this->asset->registerScripts(
+                $this->info['scripts']['paths'],
+                $this->info['scripts']['package'],
+                isset($this->info['scripts']['group']) ? $this->info['scripts']['group'] : ''
+            );
+        }
+    }
+
+    protected function addAssetsPath()
+    {
+        $this->asset->addPath($this->config->get('theme::themes_dir'));
     }
 
     /**
@@ -65,5 +102,14 @@ class Theme {
         // add theme views path
         $this->finder->prependLocation($this->activeThemePath() . '/views');
     }
-    
+
+    /**
+     * Load info file from the active theme
+     *
+     * @return array The theme info array
+     */
+    protected function loadInfo()
+    {
+        $this->info = include $this->activeThemePath() . '/info.php';
+    }
 }
