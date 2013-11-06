@@ -1,0 +1,11 @@
+{
+  "providers": [
+    "Lightgear\Theme\ThemeServiceProvider"
+  ],
+  "aliases": [
+    {
+      "alias": "Theme",
+      "facade": "Lightgear\Theme\Facades\Theme"
+    }
+  ]
+}
