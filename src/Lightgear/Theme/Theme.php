@@ -62,21 +62,17 @@ class Theme {
      */
     public function registerAssets()
     {
-        // styles
-        if (isset($this->info['styles'])) {
-            $this->asset->registerStyles(
-                $this->info['styles']['paths'],
-                $this->info['styles']['package'],
-                isset($this->info['styles']['group']) ? $this->info['styles']['group'] : ''
-            );
-        }
+        if (isset($this->info['assets'])) {
 
-        // scripts
-        if (isset($this->info['scripts'])) {
-            $this->asset->registerScripts(
-                $this->info['scripts']['paths'],
-                $this->info['scripts']['package'],
-                isset($this->info['scripts']['group']) ? $this->info['scripts']['group'] : ''
+            $options = array();
+
+            if (isset($this->info['assets']['group'])) {
+                $options['group'] = $this->info['assets']['group'];
+            }
+
+            $this->asset->register(
+                $this->info['assets']['paths'],
+                $options
             );
         }
     }

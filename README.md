@@ -17,7 +17,7 @@ php artisan package:install lightgear/theme
 ### Manual
 Just require
 ```json
-"lightgear/theme": "dev-master"
+"lightgear/theme": "develop"
 ```
 in your composer.json
 and run
@@ -63,19 +63,12 @@ return array(
     'description' => 'A good desc',
     'author' => 'Donato Rotunno',
     'version' => 1.0,
-    'styles' => array(
+    'assets' => array(
         'paths' => array(
             'less',
-            'css'
+            'css',
+            'js'
         ),
-        'package' => 'mytheme',
-        'group' => 'frontend' // optional asset group
-    ),
-    'scripts' => array(
-        'paths' => array(
-            'js',
-        ),
-        'package' => 'mytheme',
         'group' => 'frontend' // optional asset group
     ),
 );
