@@ -8,15 +8,12 @@ class Theme {
 
     protected $finder;
 
-    protected $asset;
-
     protected $active;
 
     public function __construct($app)
     {
         $this->config = $app['config'];
         $this->finder = $app['view.finder'];
-        $this->asset = $app['asset'];
     }
 
     /**
@@ -30,7 +27,6 @@ class Theme {
         $this->overrideViews();
         $this->addAssetsPath();
         $this->loadInfo();
-        $this->registerAssets();
     }
 
     /**
@@ -53,33 +49,6 @@ class Theme {
         return base_path() .
                $this->config->get('theme::themes_dir') . '/' .
                $this->active;
-    }
-
-    /**
-     * Register theme assets
-     *
-     * @return void
-     */
-    public function registerAssets()
-    {
-        if (isset($this->info['assets'])) {
-
-            $options = array();
-
-            if (isset($this->info['assets']['group'])) {
-                $options['group'] = $this->info['assets']['group'];
-            }
-
-            $this->asset->register(
-                $this->info['assets']['paths'],
-                $options
-            );
-        }
-    }
-
-    protected function addAssetsPath()
-    {
-        $this->asset->addPath($this->config->get('theme::themes_dir'));
     }
 
     /**
