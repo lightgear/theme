@@ -52,40 +52,6 @@ class Theme {
     }
 
     /**
-<<<<<<< HEAD
-     * Register theme assets
-     *
-     * @return void
-     */
-    public function registerAssets()
-    {
-        // styles
-        if (isset($this->info['styles'])) {
-            $this->asset->registerStyles(
-                $this->info['styles']['paths'],
-                $this->info['styles']['package'],
-                isset($this->info['styles']['group']) ? $this->info['styles']['group'] : ''
-            );
-        }
-
-        // scripts
-        if (isset($this->info['scripts'])) {
-            $this->asset->registerScripts(
-                $this->info['scripts']['paths'],
-                $this->info['scripts']['package'],
-                isset($this->info['scripts']['group']) ? $this->info['scripts']['group'] : ''
-            );
-        }
-    }
-
-    protected function addAssetsPath()
-    {
-        $this->asset->addPath($this->config->get('theme::themes_dir'));
-    }
-
-    /**
-=======
->>>>>>> b594d5c... Do not load assets anymore
      * Set the vieww override paths for simple
      * and namespaced (vendors, workbench) views
      *
