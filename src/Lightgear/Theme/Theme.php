@@ -8,15 +8,12 @@ class Theme {
 
     protected $finder;
 
-    protected $asset;
-
     protected $active;
 
     public function __construct($app)
     {
         $this->config = $app['config'];
         $this->finder = $app['view.finder'];
-        $this->asset = $app['asset'];
     }
 
     /**
@@ -30,7 +27,6 @@ class Theme {
         $this->overrideViews();
         $this->addAssetsPath();
         $this->loadInfo();
-        $this->registerAssets();
     }
 
     /**
@@ -56,6 +52,7 @@ class Theme {
     }
 
     /**
+<<<<<<< HEAD
      * Register theme assets
      *
      * @return void
@@ -87,6 +84,8 @@ class Theme {
     }
 
     /**
+=======
+>>>>>>> b594d5c... Do not load assets anymore
      * Set the vieww override paths for simple
      * and namespaced (vendors, workbench) views
      *
